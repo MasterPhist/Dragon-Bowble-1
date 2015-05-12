@@ -19,7 +19,7 @@ def lancer_jeu():
         pygame.mixer.init()
         pygame.mixer.music.load("song/dbz.mp3")
         pygame.mixer.music.play(loops=-1)
-        pygame.mixer.music.set_volume(.25)
+        pygame.mixer.music.set_volume(.15)
 
 
 

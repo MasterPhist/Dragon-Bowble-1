@@ -111,10 +111,16 @@ class Perso:
           #Niveau dans lequel le personnage se trouve
           self.niveau = niveau
 
+          
+     def ctraileson():
+          soundtp = pygame.mixer.Sound('song/songtp.wav')
+          soundtp.set_volume(.1)
+          soundtp.play()
+          
 
 
      def deplacer(self, direction):
-             
+          pygame.mixer.init()   
           if self.x == 630:
                continuer_jeu = 0
 
@@ -132,6 +138,8 @@ class Perso:
                                     return
                          
                self.direction = self.droite
+               Perso.ctraileson()
+               
 
           #DÃƒÆ’Ã‚Â©placement vers la gauche
           if direction == 'gauche':
@@ -141,7 +149,11 @@ class Perso:
                             self.x = self.case_x * taille_sprite
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
+                                   
                self.direction = self.gauche
+               Perso.ctraileson()
+     
+               
 
           #DÃƒÆ’Ã‚Â©placement vers le haut
           if direction == 'haut':
@@ -149,10 +161,14 @@ class Perso:
                     while self.niveau.structure[self.case_y-1][self.case_x] != 'D':
                             self.case_y -= 1
                             self.y = self.case_y * taille_sprite
+                            
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                             
                self.direction = self.haut
+               Perso.ctraileson()
+               
+               
 
           #DÃƒÆ’Ã‚Â©placement vers le bas
           if direction == 'bas':
@@ -160,7 +176,12 @@ class Perso:
                     while self.niveau.structure[self.case_y+1][self.case_x] != 'C':
                             self.case_y += 1
                             self.y = self.case_y * taille_sprite
+                            #TODO -> On doit encore arriver à modifier le niveau du son
+                            
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
+                                   
                self.direction = self.bas
+               Perso.ctraileson()
+               
 
