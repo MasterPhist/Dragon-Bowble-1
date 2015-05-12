@@ -17,7 +17,7 @@ def lancer_jeu():
         pygame.display.set_caption(titre_fenetre)
 
         pygame.mixer.init()
-        pygame.mixer.music.load("song/dbz.mp3")
+        pygame.mixer.music.load("dbz.mp3")
         pygame.mixer.music.play(loops=-1)
         pygame.mixer.music.set_volume(.25)
 
@@ -60,14 +60,14 @@ def lancer_jeu():
                                         if event.key == K_F1:
 
                                                 continuer_accueil = 0	#On quitte l'accueil
-                                                choix = 'level/n1'   	#On dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©finit le niveau ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  charge
+                                                choix = 'n1'   	#On dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©finit le niveau ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  charge
 
                                         elif event.key == K_F2:
                                                 continuer_accueil = 0
-                                                choix = 'level/n2'
+                                                choix = 'n2'
                                         elif event.key == K_F3:
                                                 continuer_accueil = 0
-                                                choix = 'level/n3'
+                                                choix = 'n3'
                 if choix != 0:
 
                         #Chargement du fond
@@ -77,7 +77,7 @@ def lancer_jeu():
                         niveau = Niveau(choix)
                         niveau.generer()
                         niveau.afficher(fenetre)
-                        goku = Perso("picture/goku1.png","picture/goku.png","picture/goku3.png","picture/goku3.png", niveau)
+                        goku = Perso("goku1.png","goku.png","goku3.png","goku3.png", niveau)
 
 
 
@@ -128,8 +128,6 @@ def lancer_jeu():
                         if niveau.structure[goku.case_y][goku.case_x] == '2':
                         	continuer_jeu = 0
                         if niveau.structure[goku.case_y][goku.case_x] == '3':
-                        	continuer_jeu = 0
-                        if niveau.structure[goku.case_y][goku.case_x] == 'Z':
                         	continuer_jeu = 0
                         	
 
