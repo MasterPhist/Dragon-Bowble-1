@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import *
 import random
+import time
 from classes import *
 from constantes import *
 from pygame.locals import *
@@ -12,7 +13,7 @@ def lancer_jeu():
 
         pygame.init()
 
-        fenetre = pygame.display.set_mode((cote_fenetre, cote_fenetre))
+        fenetre = pygame.display.set_mode((cote_fenetre_x, cote_fenetre_y))
 
         pygame.display.set_caption(titre_fenetre)
 
@@ -112,12 +113,19 @@ def lancer_jeu():
                                         elif event.key == K_DOWN:
                                         	goku.deplacer('bas')
 
-
-
-
                         fenetre.blit(fond, (0,0))
 
                         niveau.afficher(fenetre)
+                        
+                        #timer_debut = time.time()
+                        #a = 0
+                        #while a ==0 :
+                               # temps_actuel = time.time() - timer_debut
+                               # time.sleep(5)
+                                #el_chrono = pygame.font.SysFont("monospace", 15)
+                                #label = el_chrono.render(str(temps_actuel), 1, (255,255,0))
+                                #fenetre.blit(label, (1, 23))
+                        
 
                         fenetre.blit(goku.direction, (goku.x, goku.y))
 

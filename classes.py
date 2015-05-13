@@ -2,6 +2,7 @@
 import tkinter
 import pygame
 import jeu
+import time
 from pygame.locals import *
 from constantes import *
 
@@ -11,8 +12,7 @@ class Niveau:
      def __init__(self, fichier):
           self.fichier = fichier
           self.structure = 0
-
-
+          
      def generer(self):
           """MÃƒÆ’Ã‚Â©thode permettant de gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rer le niveau en fonction du fichier.
           On crÃƒÆ’Ã‚Â©e une liste gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rale, contenant une liste par ligne ÃƒÆ’Ã‚Â  afficher"""

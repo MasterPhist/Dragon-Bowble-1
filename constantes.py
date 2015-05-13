@@ -1,8 +1,9 @@
 
 #ParamÃ¨tres de la fenÃªtre
-nombre_sprite_cote = 22
+nombre_sprite_cote = 23
 taille_sprite = 32
-cote_fenetre = nombre_sprite_cote * taille_sprite
+cote_fenetre_x = (nombre_sprite_cote - 1)* taille_sprite
+cote_fenetre_y = nombre_sprite_cote * taille_sprite
 titre_fenetre = "Dragon Bowble"
 
 image_fond = "picture/fond.png"
