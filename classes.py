@@ -8,6 +8,18 @@ from constantes import *
 
 
 class Niveau:
+     
+     def el_chron0(continuer_jeu):
+          timer_debut = time.time()
+          while continuer_jeu !=0:
+               temps_actuel = time.time() - timer_debut
+               time.sleep(5)
+               el_chrono = pygame.font.SysFont("monospace", 15)
+               label = el_chrono.render(float(temps_actuel), 1, (255,255,0))
+               fenetre.blit(label, (10, 730))
+          
+          
+     
      """Classe permettant de crÃƒÆ’Ã‚Â©er un niveau"""
      def __init__(self, fichier):
           self.fichier = fichier
@@ -121,8 +133,7 @@ class Perso:
 
      def deplacer(self, direction):
           pygame.mixer.init()   
-          if self.x == 630:
-               continuer_jeu = 0
+          
 
           """Methode permettant de dÃƒÆ’Ã‚Â©placer le personnage"""
 
