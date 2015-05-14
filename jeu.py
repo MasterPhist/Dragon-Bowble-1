@@ -158,20 +158,27 @@ def lancer_jeu():
                                 if niveau.structure[goku.case_y][goku.case_x] == 'Z':
                                         continuer_jeu = 0
                                 if niveau.structure[goku.case_y][goku.case_x] == 'Q':
-                                        life-=1
-                                        
+                                        goku.case_x -= 1
+                                        life -= 1
+                                if life ==0:
+                                        continuer_jeu =0
+
                                 if life >= 3:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_life).convert_alpha()
                                         coeur3 = pygame.image.load(image_life).convert_alpha()
-
-                                
+                                        fenetre.blit(coeur1, (300,500))
+                                        fenetre.blit(coeur2, (350,500))
+                                        fenetre.blit(coeur3, (400,500))
                                 if life == 2:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
+                                        fenetre.blit(coeur1, (300,600))
+                                        fenetre.blit(coeur2, (350,600))
+                                        fenetre.blit(coeur3, (400,600))
                                          
                                         
                                 if life ==0:
@@ -180,9 +187,9 @@ def lancer_jeu():
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
                                         continuer_jeu =0
 
-                                fenetre.blit(coeur1, (300,500))
-                                fenetre.blit(coeur2, (350,500))
-                                fenetre.blit(coeur3, (400,500))
+                                        fenetre.blit(coeur1, (300,500))
+                                        fenetre.blit(coeur2, (350,500))
+                                        fenetre.blit(coeur3, (400,500))
 
                                         
 

@@ -137,7 +137,12 @@ class Perso:
                               self.x = self.case_x * taille_sprite
                               Perso.ctraileson()
                               if self.niveau.structure[self.case_y][self.case_x] == 'Z':
-                                    return
+                                   self.case_x = 19
+                                   self.case_y = 2
+                                   self.x = 570
+                                   self.y = 60
+                                   return
+                                   
                          
                self.direction = self.droite
                
@@ -150,7 +155,11 @@ class Perso:
                             self.x = self.case_x * taille_sprite
                             Perso.ctraileson()
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
-                                    return
+                                   self.case_x = 19
+                                   self.case_y = 2
+                                   self.x = 570
+                                   self.y = 60
+                                   return
                                    
                self.direction = self.gauche
      
@@ -164,7 +173,11 @@ class Perso:
                             self.y = self.case_y * taille_sprite
                             Perso.ctraileson()
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
-                                    return
+                                   self.case_x = 19
+                                   self.case_y = 2
+                                   self.x = 570
+                                   self.y = 60
+                                   return
                             
                self.direction = self.haut
                
@@ -179,8 +192,12 @@ class Perso:
                             Perso.ctraileson()
                             
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
-                                    return
-                                   
+                                   self.case_x = 19
+                                   self.case_y = 2
+                                   self.x = 570
+                                   self.y = 60
+                                   return
+                              
                self.direction = self.bas
                
                
