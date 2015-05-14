@@ -8,17 +8,6 @@ from constantes import *
 
 
 class Niveau:
-     
-     def el_chron0():
-          frame_count = 0
-          frame_rate = 60
-          start_time = 90
-          total_seconds = frame_count // frame_rate
-          seconds = total_seconds % 60
-          output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
-          text = font.render(output_string, True, black)
-          screen.blit(text, [250, 280])
-          frame_count += 1
           
      
      """Classe permettant de crÃƒÆ’Ã‚Â©er un niveau"""
