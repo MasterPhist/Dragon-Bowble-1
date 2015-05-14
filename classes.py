@@ -146,11 +146,11 @@ class Perso:
                               
                               self.case_x += 1
                               self.x = self.case_x * taille_sprite
+                              Perso.ctraileson()
                               if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                          
                self.direction = self.droite
-               Perso.ctraileson()
                
 
           #DÃƒÆ’Ã‚Â©placement vers la gauche
@@ -159,11 +159,11 @@ class Perso:
                     while self.niveau.structure[self.case_y][self.case_x-1] != 'A':
                             self.case_x -= 1
                             self.x = self.case_x * taille_sprite
+                            Perso.ctraileson()
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                                    
                self.direction = self.gauche
-               Perso.ctraileson()
      
                
 
@@ -173,12 +173,11 @@ class Perso:
                     while self.niveau.structure[self.case_y-1][self.case_x] != 'D':
                             self.case_y -= 1
                             self.y = self.case_y * taille_sprite
-                            
+                            Perso.ctraileson()
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                             
                self.direction = self.haut
-               Perso.ctraileson()
                
                
 
@@ -188,12 +187,11 @@ class Perso:
                     while self.niveau.structure[self.case_y+1][self.case_x] != 'C':
                             self.case_y += 1
                             self.y = self.case_y * taille_sprite
-                            #TODO -> On doit encore arriver à modifier le niveau du son
+                            Perso.ctraileson()
                             
                             if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                                    
                self.direction = self.bas
-               Perso.ctraileson()
                
 
