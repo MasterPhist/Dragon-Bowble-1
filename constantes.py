@@ -1,5 +1,4 @@
-
-#ParamÃ¨tres de la fenÃªtre
+#on definit les parametres de la fenetre
 nombre_sprite_cote = 23
 taille_sprite = 30
 cote_fenetre_x = (nombre_sprite_cote - 1)* taille_sprite
@@ -27,5 +26,11 @@ image_goku_bas = "picture/goku1.png"
 image_goku_gauche = "picture/goku2.png"
 image_goku_droite = "picture/goku3.png"
 image_accueil= "picture/accueil.png"
+image_win= "picture/win.png"
 image_life = "picture/life.png"
 image_dead = "picture/dead.png"
+
+
+
+
+    

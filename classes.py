@@ -7,26 +7,30 @@ from pygame.locals import *
 from constantes import *
 
 
-class Niveau: #Classe permettant de créer le niveau
+class Niveau:
           
+     
+     """Classe permettant de crÃƒÆ’Ã‚Â©er un niveau"""
      def __init__(self, fichier):
           self.fichier = fichier
           self.structure = 0
           
-     def generer(self): #On génére les niveaux grâce aux fichiers contenus dans le dossier 'level'
+     def generer(self):
+          """MÃƒÆ’Ã‚Â©thode permettant de gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rer le niveau en fonction du fichier.
+          On crÃƒÆ’Ã‚Â©e une liste gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rale, contenant une liste par ligne ÃƒÆ’Ã‚Â  afficher"""
           #On ouvre le fichier
           with open(self.fichier, "r") as fichier:
                structure_niveau = []
                #On parcourt les lignes du fichier
                for ligne in fichier:
                     ligne_niveau = []
-                    #On parcourt les lettres contenues dans le fichier
+                    #On parcourt les sprites (lettres) contenus dans le fichier
                     for sprite in ligne:
                          #On ignore les "\n" de fin de ligne
                          if sprite != '\n':
                               #On ajoute le sprite ÃƒÆ’Ã‚Â  la liste de la ligne
                               ligne_niveau.append(sprite)
-                    #On ajoute la ligne à la liste du niveau
+                    #On ajoute la ligne ÃƒÆ’Ã‚Â  la liste du niveau
                     structure_niveau.append(ligne_niveau)
                #On sauvegarde cette structure
                self.structure = structure_niveau
@@ -35,7 +39,7 @@ class Niveau: #Classe permettant de créer le niveau
      def afficher(self, fenetre):
           """MÃƒÆ’Ã‚Â©thode permettant d'afficher le niveau en fonction
           de la liste de structure renvoyÃƒÆ’Ã‚Â©e par generer()"""
-          #Chargement des images (convert_alpha() permet la transparence)
+          #Chargement des images (seule celle d'arrivÃƒÆ’Ã‚Â©e contient de la transparence)
           arrivee1 = pygame.image.load(image_boule1).convert_alpha()
           arrivee2 = pygame.image.load(image_boule2).convert_alpha()
           arrivee3 = pygame.image.load(image_boule3).convert_alpha()
@@ -58,7 +62,7 @@ class Niveau: #Classe permettant de créer le niveau
                #On parcourt les listes de lignes
                num_case = 0
                for sprite in ligne:
-                    #On calcule la position des éléments du niveau en pixels
+                    #On calcule la position rÃƒÆ’Ã‚Â©elle en pixels
                     x = num_case * taille_sprite
                     y = num_ligne * taille_sprite
                     if sprite == 'A':
@@ -92,130 +96,92 @@ class Niveau: #Classe permettant de créer le niveau
 
 
 class Perso:
-     
-     #Classe permettant de créer le personnage
+     """Classe permettant de crÃƒÆ’Ã‚Â©er un personnage"""
      def __init__(self, droite, gauche, haut, bas, niveau):
           #Sprites du personnage
           self.droite = pygame.image.load(droite).convert_alpha()
           self.gauche = pygame.image.load(gauche).convert_alpha()
           self.haut = pygame.image.load(haut).convert_alpha()
           self.bas = pygame.image.load(bas).convert_alpha()
-          #Position du personnage en cases et en pixels, ainsi le personnage commencera toujours à cette position
+          #Position du personnage en cases et en pixels
           self.case_x = 19
           self.case_y = 2
           self.x = 570
           self.y = 60
-          #Direction par défaut
+          #Direction par dÃƒÆ’Ã‚Â©faut
           self.direction = self.bas
           #Niveau dans lequel le personnage se trouve
           self.niveau = niveau
 
           
-     def ctraileson(): #On lance le son de la téléportation quand la def est appelée.
+     def ctraileson():
           soundtp = pygame.mixer.Sound('song/songtp.wav')
           soundtp.set_volume(.1)
           soundtp.play()
           
 
 
-     def deplacer(self, direction): #Méthode permettant le déplacement du personnage
+     def deplacer(self, direction):
           pygame.mixer.init()   
-          #Déplacement vers la droite
           
+
+          """Methode permettant de dÃƒÆ’Ã‚Â©placer le personnage"""
+
+          #DÃƒÆ’Ã‚Â©placement vers la droite
           if direction == 'droite':
-               #Pour ne pas dépasser les limites de la fenêtre et laisser le personnage aller à l'infini
+               #Pour ne pas dÃƒÆ’Ã‚Â©passer l'ÃƒÆ’Ã‚Â©cran
                if self.case_x < (nombre_sprite_cote - 1):
-                       while self.niveau.structure[self.case_y][self.case_x+1] != 'B': #Se déplace toujours vers la droite jusqu'a ce que le personnage soit à une case de l'obstacle
+                       while self.niveau.structure[self.case_y][self.case_x+1] != 'B':
                               
                               self.case_x += 1
                               self.x = self.case_x * taille_sprite
                               Perso.ctraileson()
-                              if self.niveau.structure[self.case_y][self.case_x] == 'Z': #Si le personnage rencontre un obstacle du contour, la fonction s'arrête et remet le perso à sa pos d'origine
-                                    self.x = 570
-                                    self.y = 60
-                                    self.case_x = 19
-                                    self.case_y = 2
-                                    
-                                    
-                                    
+                              if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                          
                self.direction = self.droite
                
-               
 
-          #Déplacement vers la gauche
+          #DÃƒÆ’Ã‚Â©placement vers la gauche
           if direction == 'gauche':
-               if self.case_x > 0: #Pour ne pas dépasser les limites de la fenêtre et laisser le personnage aller à l'infini
-                    while self.niveau.structure[self.case_y][self.case_x-1] != 'A': #Se déplace toujours vers la gauche jusqu'a ce que le personnage soit à une case de l'obstacle
+               if self.case_x > 0:
+                    while self.niveau.structure[self.case_y][self.case_x-1] != 'A':
                             self.case_x -= 1
                             self.x = self.case_x * taille_sprite
                             Perso.ctraileson()
-                            if self.niveau.structure[self.case_y][self.case_x] == 'Z': #Si le personnage rencontre un obstacle du contour, la fonction s'arrête et remet le perso à sa pos d'origine
-                                    self.x = 570
-                                    self.y = 60
-                                    self.case_x = 19
-                                    self.case_y = 2
-                                    
-                                    
-                                    
+                            if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                                    
                self.direction = self.gauche
-               
      
                
 
-          #Déplacement vers le haut
+          #DÃƒÆ’Ã‚Â©placement vers le haut
           if direction == 'haut':
-               if self.case_y > 0: #Pour ne pas dépasser les limites de la fenêtre et laisser le personnage aller à l'infini
-                    while self.niveau.structure[self.case_y-1][self.case_x] != 'D': #Se déplace toujours vers le haut jusqu'a ce que le personnage soit à une case de l'obstacle
+               if self.case_y > 0:
+                    while self.niveau.structure[self.case_y-1][self.case_x] != 'D':
                             self.case_y -= 1
                             self.y = self.case_y * taille_sprite
                             Perso.ctraileson()
-                            if self.niveau.structure[self.case_y][self.case_x] == 'Z': #Si le personnage rencontre un obstacle du contour, la fonction s'arrête et remet le perso à sa pos d'origine
-                                    self.x = 570
-                                    self.y = 60
-                                    self.case_x = 19
-                                    self.case_y = 2
-                                    
-                                    
-                                    
+                            if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
-
-               self.direction = self.haut
                             
-               
-               
+               self.direction = self.haut
                
                
 
-          #Dépalcement vers le bas
+          #DÃƒÆ’Ã‚Â©placement vers le bas
           if direction == 'bas':
-               if self.case_y < (nombre_sprite_cote - 1): #Pour ne pas dépasser les limites de la fenêtre et laisser le personnage aller à l'infini
-                    while self.niveau.structure[self.case_y+1][self.case_x] != 'C': #Se déplace toujours vers le bas jusqu'a ce que le personnage soit à une case de l'obstacle
+               if self.case_y < (nombre_sprite_cote - 1):
+                    while self.niveau.structure[self.case_y+1][self.case_x] != 'C':
                             self.case_y += 1
                             self.y = self.case_y * taille_sprite
                             Perso.ctraileson()
                             
-                            if self.niveau.structure[self.case_y][self.case_x] == 'Z': #Si le personnage rencontre un obstacle du contour, la fonction s'arrête et remet le perso à sa pos d'origine
-                                    self.x = 570
-                                    self.y = 60
-                                    self.case_x = 19
-                                    self.case_y = 2
-                                                                        
-                                    
-                                    
+                            if self.niveau.structure[self.case_y][self.case_x] == 'Z':
                                     return
                                    
                self.direction = self.bas
-
-
-          
-      
                
-          
-               
-
                
 
