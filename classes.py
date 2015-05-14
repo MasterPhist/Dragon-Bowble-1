@@ -92,6 +92,7 @@ class Niveau: #Classe permettant de créer le niveau
 
 
 class Perso:
+     
      #Classe permettant de créer le personnage
      def __init__(self, droite, gauche, haut, bas, niveau):
           #Sprites du personnage
@@ -134,6 +135,9 @@ class Perso:
                                     self.y = 60
                                     self.case_x = 19
                                     self.case_y = 2
+                                    
+                                    
+                                    
                                     return
                          
                self.direction = self.droite
@@ -152,6 +156,9 @@ class Perso:
                                     self.y = 60
                                     self.case_x = 19
                                     self.case_y = 2
+                                    
+                                    
+                                    
                                     return
                                    
                self.direction = self.gauche
@@ -171,9 +178,14 @@ class Perso:
                                     self.y = 60
                                     self.case_x = 19
                                     self.case_y = 2
+                                    
+                                    
+                                    
                                     return
-                            
+
                self.direction = self.haut
+                            
+               
                
                
                
@@ -191,9 +203,17 @@ class Perso:
                                     self.y = 60
                                     self.case_x = 19
                                     self.case_y = 2
+                                                                        
+                                    
+                                    
                                     return
-      
+                                   
                self.direction = self.bas
+
+
+          
+      
+               
           
                
 
