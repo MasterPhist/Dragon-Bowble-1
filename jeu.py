@@ -130,7 +130,7 @@ def lancer_jeu():
                                 seconds = total_seconds % 60
                                 output_string = "Temps: {0:02}:{1:02}".format(minutes, seconds)
                                 timer = el_chrono.render(output_string, 1,(255,255,0))
-                                fenetre.blit(timer, (1, 500))
+                                fenetre.blit(timer, (1, 716))
                                 frame_count += 1
 
                                 
