@@ -45,8 +45,9 @@ def lancer_jeu():
 
                                 #Si l'utilisateur quitte, on met les variables
                                 #de boucle ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  0 pour n'en parcourir aucune et fermer
-                                if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                                if event.type == QUIT:
                                         pygame.quit()
+                                        return
 
                                 elif event.type == KEYDOWN:
                                         #Lancement du niveau 1
