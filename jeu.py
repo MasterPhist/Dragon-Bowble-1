@@ -108,11 +108,11 @@ def lancer_jeu():
 
                         fenetre.blit(fond, (0,0))
                         el_chrono = pygame.font.SysFont("monospace", 15)
-                        timer = el_chrono.render('', 1,(255,255,0))
+                        
                         pygame.time.Clock().tick(30)
-                        fg = 250, 240, 230
-                        bg = 5, 5, 5
-                        font = pygame.font.Font(None, 80)
+                        
+                        
+                        
                         total_seconds = frame_count // frame_rate
                         minutes = total_seconds // 60
                         seconds = total_seconds % 60
@@ -140,13 +140,16 @@ def lancer_jeu():
                         if niveau.structure[goku.case_y][goku.case_x] == '3':
                                 continuer_jeu = 0
                         if niveau.structure[goku.case_y][goku.case_x] == 'Z':
-                                continuer_jeu = 0
+                                goku.x = 570
+                                goku.y = 60
+                                
+                                fenetre.blit(goku.direction, (goku.x, goku.y))
 
                                 
 
                         #fichier = open("test.txt", "w")        #Créer le fichier s'il n'existe pas
                         #fichier.write(output_string)        #Écrit la valeur de la variable a dans le fichier
-                       # fichier.close()
+                        #fichier.close()
 
 
 
