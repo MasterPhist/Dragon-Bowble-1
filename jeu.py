@@ -76,7 +76,7 @@ def lancer_jeu():
                         if choix != 0:
 
                                 #Chargement du fond
-                                fond = pygame.image.load(image_fond).convert()
+                                fond = pygame.image.load(image_fond).convert_alpha()
 
                                 #Génerer un niveau à partir d'un fichier
                                 niveau = Niveau(choix)
@@ -118,7 +118,10 @@ def lancer_jeu():
                                                 elif event.key == K_DOWN:
                                                         goku.deplacer('bas')
 
-                                fenetre.blit(fond, (0,0))#on initialise le fond de la map et du timer
+
+
+                               
+                                fenetre.blit(fond, (0,0))
                                 pygame.time.Clock().tick(30)#Limitation de vitesse de la boucle
                                 total_seconds = frame_count // frame_rate # frame_count est egale au nombre de boucle depuis le debut du jeu , frame_rate est egale au nombre de boucle en 1 seconde
                                 minutes = total_seconds // 60# on convertit en minute
@@ -131,11 +134,7 @@ def lancer_jeu():
 
                                         
 
-                                niveau.afficher(fenetre)
-
-                                fenetre.blit(goku.direction, (goku.x, goku.y))
-
-                                pygame.display.flip()
+                                
 
                                         
 
@@ -160,36 +159,53 @@ def lancer_jeu():
                                 if niveau.structure[goku.case_y][goku.case_x] == 'Q':
                                         goku.case_x -= 1
                                         life -= 1
-                                if life ==0:
-                                        continuer_jeu =0
 
-                                if life >= 3:
+                                if life == 0:
+                                        continuer_jeu =0
+                                        coeur1 = pygame.image.load(image_dead).convert_alpha()
+                                        coeur2 = pygame.image.load(image_dead).convert_alpha()
+                                        coeur3 = pygame.image.load(image_dead).convert_alpha()
+                                        fenetre.blit(coeur1, (525,665))
+                                        fenetre.blit(coeur2, (575,665))
+                                        fenetre.blit(coeur3, (625,665))
+
+
+                                if life == 3:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_life).convert_alpha()
                                         coeur3 = pygame.image.load(image_life).convert_alpha()
-                                        fenetre.blit(coeur1, (300,500))
-                                        fenetre.blit(coeur2, (350,500))
-                                        fenetre.blit(coeur3, (400,500))
+                                        fenetre.blit(coeur1, (525,665))
+                                        fenetre.blit(coeur2, (575,665))
+                                        fenetre.blit(coeur3, (625,665))
                                 if life == 2:
+                                        
+                                        coeur1 = pygame.image.load(image_life).convert_alpha()
+                                        coeur2 = pygame.image.load(image_life).convert_alpha()
+                                        coeur3 = pygame.image.load(image_dead).convert_alpha()
+                                        fenetre.blit(coeur1, (525,665))
+                                        fenetre.blit(coeur2, (575,665))
+                                        fenetre.blit(coeur3, (625,665))
+                                         
+                                        
+                                if life == 1:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
-                                        fenetre.blit(coeur1, (300,600))
-                                        fenetre.blit(coeur2, (350,600))
-                                        fenetre.blit(coeur3, (400,600))
-                                         
-                                        
-                                if life ==0:
-                                        coeur1 = pygame.image.load(image_dead).convert_alpha()
-                                        coeur2 = pygame.image.load(image_dead).convert_alpha()
-                                        coeur3 = pygame.image.load(image_dead).convert_alpha()
-                                        continuer_jeu =0
+                                        fenetre.blit(coeur1, (525,665))
+                                        fenetre.blit(coeur2, (575,665))
+                                        fenetre.blit(coeur3, (625,665))
 
-                                        fenetre.blit(coeur1, (300,500))
-                                        fenetre.blit(coeur2, (350,500))
-                                        fenetre.blit(coeur3, (400,500))
+                                niveau.afficher(fenetre)
+
+                                fenetre.blit(goku.direction, (goku.x, goku.y))
+
+                                pygame.display.flip()
+
+
+
+                                
 
                                         
 
