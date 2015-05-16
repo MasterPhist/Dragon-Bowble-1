@@ -29,9 +29,8 @@ menu1.add_command(label="Quitter", command=fen1.destroy)
 menubar.add_cascade(label="Fichier", menu=menu1)
 
 menu2 = Menu(menubar, tearoff=0)
-menu2.add_command(label="À propos", command=os.startfile('help.html'))
-menubar.add_cascade(label="Aide", menu=menu2)
 
 fen1.config(menu=menubar)
+os.startfile('help.html')
 
 fen1.mainloop()
