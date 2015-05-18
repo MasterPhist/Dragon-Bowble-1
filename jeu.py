@@ -14,7 +14,7 @@ def lancer_jeu():
 
         pygame.display.set_caption(titre_fenetre)# on definit le titre de la fenetre
 
-        frame_rate = 20
+        frame_rate = 5
         pygame.mixer.init()
         pygame.mixer.music.load("song/dbz.mp3")
         pygame.mixer.music.play(loops=-1) #permet de lancer le son à l'infinis
@@ -36,7 +36,7 @@ def lancer_jeu():
                         while continuer_accueil:
 
                                 #Limitation de vitesse de la boucle
-                                pygame.time.Clock().tick(5)
+                                pygame.time.Clock().tick(20)
 
                                 for event in pygame.event.get():
 
@@ -120,7 +120,7 @@ def lancer_jeu():
 
                                
                                 fenetre.blit(fond, (0,0)) #On place le fond
-                                pygame.time.Clock().tick(20)#Limitation de vitesse de la boucle
+                                pygame.time.Clock().tick(5)#Limitation de vitesse de la boucle
                                 total_seconds = frame_count // frame_rate # frame_count est egale au nombre de boucle depuis le debut du jeu , frame_rate est egale au nombre de boucle en 1 seconde
                                 minutes = total_seconds // 60# On caclule le nombre de minutes
                                 seconds = total_seconds % 60# On fait en sorte que seconds ne puisse pas depasser 60
