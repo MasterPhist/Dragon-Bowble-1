@@ -1,6 +1,6 @@
 #on definit les parametres de la fenetre
 nombre_sprite_cote = 23
-taille_sprite = 30
+taille_sprite = 30 #permet de configurer la taille des cases
 cote_fenetre_x = (nombre_sprite_cote - 1)* taille_sprite
 cote_fenetre_y = nombre_sprite_cote * taille_sprite
 titre_fenetre = "Dragon Bowble"
