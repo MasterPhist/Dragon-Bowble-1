@@ -14,11 +14,10 @@ def lancer_jeu():
 
         pygame.display.set_caption(titre_fenetre)# on definit le titre de la fenetre
 
-        frame_rate = 20
-        start_time = 90
+        frame_rate = 5
         pygame.mixer.init()
         pygame.mixer.music.load("song/dbz.mp3")
-        pygame.mixer.music.play(loops=-1)
+        pygame.mixer.music.play(loops=-1) #permet de lancer le son à l'infinis
         pygame.mixer.music.set_volume(.15)
 
 
@@ -33,7 +32,6 @@ def lancer_jeu():
                         pygame.display.flip()
 
                         #On remet ces variables
-                        continuer_jeu = 1
                         continuer_accueil = 1
                         while continuer_accueil:
 
@@ -86,7 +84,7 @@ def lancer_jeu():
 
 
 
-
+                        continuer_jeu = 1
                         frame_count = 0
                         life = 4
                         while continuer_jeu:
@@ -121,14 +119,14 @@ def lancer_jeu():
 
 
                                
-                                fenetre.blit(fond, (0,0))
-                                pygame.time.Clock().tick(30)#Limitation de vitesse de la boucle
+                                fenetre.blit(fond, (0,0)) #On place le fond
+                                pygame.time.Clock().tick(5)#Limitation de vitesse de la boucle
                                 total_seconds = frame_count // frame_rate # frame_count est egale au nombre de boucle depuis le debut du jeu , frame_rate est egale au nombre de boucle en 1 seconde
-                                minutes = total_seconds // 60# on convertit en minute
-                                seconds = total_seconds % 60# on convertit en seconde
-                                el_chrono = pygame.font.SysFont("monospace", 15)# on définit la police du timer
-                                output_string = "Temps: {0:02}:{1:02}".format(minutes, seconds)# on iniatilise le timer
-                                timer = el_chrono.render(output_string, 1,(255,255,0))#on definit la couleur du timer
+                                minutes = total_seconds // 60# On caclule le nombre de minutes
+                                seconds = total_seconds % 60# On fait en sorte que seconds ne puisse pas depasser 60
+                                el_font = pygame.font.SysFont("monospace", 15)# on définit la police du timer
+                                output_string = "Temps: {0:02}:{1:02}".format(minutes, seconds)# on la variable string du timer
+                                timer = el_font.render(output_string, 1,(255,255,0))#on ajoute des paramètres à la variable string 'output_string'
                                 fenetre.blit(timer, (1, 670))# on definit la position du timer
                                 frame_count += 1# frame_count augmente de 1 par boucle
 
@@ -156,11 +154,11 @@ def lancer_jeu():
                                         continuer_jeu = 0
                                 if niveau.structure[goku.case_y][goku.case_x] == 'Z':
                                         continuer_jeu = 0
-                                if niveau.structure[goku.case_y][goku.case_x] == 'Q':
-                                        goku.case_x -= 1
+                                if niveau.structure[goku.case_y][goku.case_x] == 'Q': # si goku arrive a sa pos du départ , on enlève une vie
+                                        goku.case_x -= 1 # on deplace la pos de goku de -1 pour x pour pas que le compteur de v arrive directement à 0
                                         life -= 1
 
-                                if life == 0:
+                                if life == 0: #on affiche les coeurs en fonction des vies restantes
                                         continuer_jeu =0
                                         coeur1 = pygame.image.load(image_dead).convert_alpha()
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
@@ -186,14 +184,14 @@ def lancer_jeu():
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
 
-                                fenetre.blit(coeur1, (525,665))
+                                fenetre.blit(coeur1, (525,665)) #placement des coeurs
                                 fenetre.blit(coeur2, (575,665))
                                 fenetre.blit(coeur3, (625,665))
                                         
 
-                                niveau.afficher(fenetre)
+                                niveau.afficher(fenetre) 
 
-                                fenetre.blit(goku.direction, (goku.x, goku.y))
+                                fenetre.blit(goku.direction, (goku.x, goku.y)) #on place goku fonction de sa position ainsi que sa direction (bas, haut...)
 
                                 pygame.display.flip()
 
