@@ -36,8 +36,7 @@ class Niveau:
 
 
      def afficher(self, fenetre):
-          """MÃƒÆ’Ã‚Â©thode permettant d'afficher le niveau en fonction
-          de la liste de structure renvoyÃƒÆ’Ã‚Â©e par generer()"""
+          #Methode permettant d'associer les images par rapport a la liste de structure de niveau renvoyee par generer()
           #Chargement des images, convert_alpha() permet la transparence des images
           arrivee1 = pygame.image.load(image_boule1).convert_alpha()
           arrivee2 = pygame.image.load(image_boule2).convert_alpha()
@@ -95,7 +94,7 @@ class Niveau:
 
 
 class Perso:
-     """Classe permettant de crÃƒÆ’Ã‚Â©er un personnage"""
+     #Classe permettant de generer le personnage
      def __init__(self, droite, gauche, haut, bas, niveau):
           #Sprites du personnage
           self.droite = pygame.image.load(droite).convert_alpha()
