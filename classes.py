@@ -1,4 +1,3 @@
-"""Classes du jeu de Labyrinthe Donkey Kong"""
 import tkinter
 import pygame
 import jeu
@@ -10,27 +9,27 @@ from constantes import *
 class Niveau:
           
      
-     """Classe permettant de crÃƒÆ’Ã‚Â©er un niveau"""
+     #Definition qui sert a generer les commentaires
      def __init__(self, fichier):
           self.fichier = fichier
           self.structure = 0
           
      def generer(self):
-          """MÃƒÆ’Ã‚Â©thode permettant de gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rer le niveau en fonction du fichier.
-          On crÃƒÆ’Ã‚Â©e une liste gÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©rale, contenant une liste par ligne ÃƒÆ’Ã‚Â  afficher"""
-          #On ouvre le fichier
-          with open(self.fichier, "r") as fichier:
+          #Methode permettant de generer le niveau en fonction des fichiers contenus dans le dossier level
+          #On cree une liste qui récupére le contenu du fichier ligne par ligne
+          
+          with open(self.fichier, "r") as fichier: #On ouvre le fichier
                structure_niveau = []
                #On parcourt les lignes du fichier
                for ligne in fichier:
                     ligne_niveau = []
-                    #On parcourt les sprites (lettres) contenus dans le fichier
+                    #On parcourt les lettres contenues dans le fichier
                     for sprite in ligne:
                          #On ignore les "\n" de fin de ligne
                          if sprite != '\n':
-                              #On ajoute le sprite ÃƒÆ’Ã‚Â  la liste de la ligne
+                              #On ajoute le sprite à la liste de la ligne
                               ligne_niveau.append(sprite)
-                    #On ajoute la ligne ÃƒÆ’Ã‚Â  la liste du niveau
+                    #On ajoute la ligne à la liste du niveau
                     structure_niveau.append(ligne_niveau)
                #On sauvegarde cette structure
                self.structure = structure_niveau
@@ -39,7 +38,7 @@ class Niveau:
      def afficher(self, fenetre):
           """MÃƒÆ’Ã‚Â©thode permettant d'afficher le niveau en fonction
           de la liste de structure renvoyÃƒÆ’Ã‚Â©e par generer()"""
-          #Chargement des images (seule celle d'arrivÃƒÆ’Ã‚Â©e contient de la transparence)
+          #Chargement des images, convert_alpha() permet la transparence des images
           arrivee1 = pygame.image.load(image_boule1).convert_alpha()
           arrivee2 = pygame.image.load(image_boule2).convert_alpha()
           arrivee3 = pygame.image.load(image_boule3).convert_alpha()
@@ -62,7 +61,7 @@ class Niveau:
                #On parcourt les listes de lignes
                num_case = 0
                for sprite in ligne:
-                    #On calcule la position rÃƒÆ’Ã‚Â©elle en pixels
+                    #On calcule la position reelle en pixels
                     x = num_case * taille_sprite
                     y = num_ligne * taille_sprite
                     if sprite == 'A':
@@ -108,13 +107,13 @@ class Perso:
           self.case_y = 2
           self.x = 570
           self.y = 60
-          #Direction par dÃƒÆ’Ã‚Â©faut
+          #Direction par defaut
           self.direction = self.bas
           #Niveau dans lequel le personnage se trouve
           self.niveau = niveau
 
           
-     def ctraileson():
+     def ctraileson(): #Definition qui permet de jouer le son de teleportation quand elle est invoquee
           soundtp = pygame.mixer.Sound('song/songtp.wav')
           soundtp.set_volume(.1)
           soundtp.play()
@@ -122,21 +121,21 @@ class Perso:
 
 
      def deplacer(self, direction):
-          pygame.mixer.init()   
+            
           
 
-          """Methode permettant de dÃƒÆ’Ã‚Â©placer le personnage"""
+          #Methode qui permet le deplacement du personnage
 
-          #DÃƒÆ’Ã‚Â©placement vers la droite
+          #Deplacement vers la droite
           if direction == 'droite':
-               #Pour ne pas dÃƒÆ’Ã‚Â©passer l'ÃƒÆ’Ã‚Â©cran
-               if self.case_x < (nombre_sprite_cote - 1):
-                       while self.niveau.structure[self.case_y][self.case_x+1] != 'B':
+               
+               if self.case_x < (nombre_sprite_cote - 2): #Pour ne pas sortir de l'ecran
+                       while self.niveau.structure[self.case_y][self.case_x+1] != 'B': #Tant qu'il la position de goku n'est pas egale a l'obstacle B
                               
-                              self.case_x += 1
+                              self.case_x += 1 #On augmente la postion de X par 1
                               self.x = self.case_x * taille_sprite
                               Perso.ctraileson()
-                              if self.niveau.structure[self.case_y][self.case_x] == 'Z':
+                              if self.niveau.structure[self.case_y][self.case_x] == 'Z': #Si la position de goku est egale a celle d'un mur donc Z
                                    self.case_x = 19
                                    self.case_y = 2
                                    self.x = 570
@@ -147,7 +146,7 @@ class Perso:
                self.direction = self.droite
                
 
-          #DÃƒÆ’Ã‚Â©placement vers la gauche
+          #Deplacement vers la gauche
           if direction == 'gauche':
                if self.case_x > 0:
                     while self.niveau.structure[self.case_y][self.case_x-1] != 'A':
@@ -165,7 +164,7 @@ class Perso:
      
                
 
-          #DÃƒÆ’Ã‚Â©placement vers le haut
+          #Deplacement vers le haut
           if direction == 'haut':
                if self.case_y > 0:
                     while self.niveau.structure[self.case_y-1][self.case_x] != 'D':
@@ -183,7 +182,7 @@ class Perso:
                
                
 
-          #DÃƒÆ’Ã‚Â©placement vers le bas
+          #Deplacement vers le bas
           if direction == 'bas':
                if self.case_y < (nombre_sprite_cote - 1):
                     while self.niveau.structure[self.case_y+1][self.case_x] != 'C':

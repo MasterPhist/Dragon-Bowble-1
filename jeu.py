@@ -165,27 +165,19 @@ def lancer_jeu():
                                         coeur1 = pygame.image.load(image_dead).convert_alpha()
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
-                                        fenetre.blit(coeur1, (525,665))
-                                        fenetre.blit(coeur2, (575,665))
-                                        fenetre.blit(coeur3, (625,665))
-
-
+                                        
                                 if life == 3:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_life).convert_alpha()
                                         coeur3 = pygame.image.load(image_life).convert_alpha()
-                                        fenetre.blit(coeur1, (525,665))
-                                        fenetre.blit(coeur2, (575,665))
-                                        fenetre.blit(coeur3, (625,665))
+                                        
                                 if life == 2:
                                         
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_life).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
-                                        fenetre.blit(coeur1, (525,665))
-                                        fenetre.blit(coeur2, (575,665))
-                                        fenetre.blit(coeur3, (625,665))
+                                        
                                          
                                         
                                 if life == 1:
@@ -193,9 +185,11 @@ def lancer_jeu():
                                         coeur1 = pygame.image.load(image_life).convert_alpha()
                                         coeur2 = pygame.image.load(image_dead).convert_alpha()
                                         coeur3 = pygame.image.load(image_dead).convert_alpha()
-                                        fenetre.blit(coeur1, (525,665))
-                                        fenetre.blit(coeur2, (575,665))
-                                        fenetre.blit(coeur3, (625,665))
+
+                                fenetre.blit(coeur1, (525,665))
+                                fenetre.blit(coeur2, (575,665))
+                                fenetre.blit(coeur3, (625,665))
+                                        
 
                                 niveau.afficher(fenetre)
 
