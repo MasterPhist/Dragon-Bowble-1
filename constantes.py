@@ -26,7 +26,6 @@ image_goku_bas = "picture/goku1.png"
 image_goku_gauche = "picture/goku2.png"
 image_goku_droite = "picture/goku3.png"
 image_accueil= "picture/accueil.png"
-image_win= "picture/win.png"
 image_life = "picture/life.png"
 image_dead = "picture/dead.png"
 
